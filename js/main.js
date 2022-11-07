@@ -113,3 +113,34 @@ function filterKitten(event) {
         }
     }
 }
+//-----------------------FUNCIONES----------------------------//
+
+//-----------------------EVENTOS----------------------------//
+
+/*menu.addEventListener('click', (event) => {
+  event.preventDefault() 
+  
+  if (formElement.classList.contains('collapsed')) {
+    formElement.classList.remove("collapsed");
+  } else {
+    formElement.classList.add("collapsed");
+  }
+  
+});*/
+
+//Eventos que hacemos al clickar. 
+
+button.addEventListener('click', addNewKitten);
+
+buttonCancel.addEventListener('click', cancelNewKitten);
+
+buttonSearch.addEventListener('click', filterKitten);
+
+menu.addEventListener('click', handleClickNewCatForm);
+
+//-----------------------EVENTOS----------------------------//
+
+
+
+
+
