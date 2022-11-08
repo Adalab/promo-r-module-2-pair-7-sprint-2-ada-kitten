@@ -6,10 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;700&display=swap" rel="stylesheet" />
     <link
       rel="stylesheet"
       href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
@@ -26,9 +23,9 @@
       <section class="logo">
         <img class="img" src="./img/favicon.png" alt="Logo de Adacats" />
         <h1>AdaKitten</h1>
-        <nav class="js-menu-nav menu-nav">
+        <nav class="menu-nav">
           <ul class="menu">
-            <li class="item">
+            <li class="item js-button-new-form">
               <span class="fas fa-plus-circle"> </span>
             </li>
           </ul>
@@ -37,21 +34,16 @@
     </header>
 
     <main>
-      <section class="js-new-form new-form collapsed">
+      <section class="new-form js-new-form collapsed">
         <h2 class="title">¿Agregamos un nuevo gatito a Adalab?</h2>
         <form class="form">
-          <input 
-            class="js-input-photo input"
-            type="text"
-            placeholder="Url de la foto"
-            required
-          />
-          <input class="js-input-name input" type="text" placeholder="Nombre" required />
-          <input class="js-input-race input" type="text" placeholder="Raza" />
-          <input class="js-input-desc input" type="text" placeholder="Descripción" required />
+          <input class="input js-input-photo" type="text" placeholder="Url de la foto" required />
+          <input class="input js-input-name" type="text" placeholder="Nombre" required />
+          <input class="input js-input-race" type="text" placeholder="Raza" />
+          <input class="input js-input-desc" type="text" placeholder="Descripción" required />
           <label class="js-label-error"></label>
-          <button class="js-btn-add button">Añadir</button>
-          <button class="js-cancel button-cancel">Cancelar</button>
+          <button class="button js-btn-add">Añadir</button>
+          <button class="button-cancel js-btn-cancel">Cancelar</button>
         </form>
       </section>
 
@@ -63,23 +55,15 @@
       <section class="search">
         <h2 class="title">Filtrar / Buscar</h2>
         <form class="form">
-          <input class="js_in_search_desc input" type="text" placeholder="Descripción"/>
-          <input
-            class="js_in_search_race input"
-            type="select"
-            name="raza"
-            placeholder="Raza"
-            id="raza"
-          />
+          <input class="input js_in_search_desc" type="text" placeholder="Descripción" />
+          <input class="input" type="select" name="raza" placeholder="Raza" id="raza" />
 
-          <button class="js-button-search button">Buscar</button>
+          <button class="button js-button-search">Buscar</button>
         </form>
       </section>
 
-      <section class="data">
-        <ul class="js-list list">
-         
-        </ul>
+      <section class="data js-data">
+        <ul class="list js-list"></ul>
       </section>
     </main>
     <footer class="footer">
