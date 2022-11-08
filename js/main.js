@@ -85,7 +85,7 @@ function addNewKitten(event) {
   const valueDesc = inputDesc.value;
   const valuePhoto = inputPhoto.value;
   const valueName = inputName.value;
-  if (valueDesc === "" && valuePhoto === "" && valueName === "") {
+  if (valueDesc === "" || valuePhoto === "" || valueName === "") {
     labelMesageError.innerHTML = "Debe rellenar todos los valores";
   } else {
     if (valueDesc !== "" && valuePhoto !== "" && valueName !== "") {
@@ -108,14 +108,14 @@ function filterKitten(event) {
   event.preventDefault();
   const descrSearchText = input_search_desc.value;
   listElement.innerHTML = "";
-  for (const kittenItem of kittenDataList) {
-    if (kittenItem.desc.includes(descrSearchText)) {
-      listElement.innerHTML += renderKitten(kittenItem);
-    }
-  }
+  const dataKittenFiltered = kittenDataList
+    .filter((kitten) => kitten.desc.includes(descrSearchText))
+    //Filtrar por raza además
+    .filter((kitten) => kitten.race === raceSearchText);
+  renderKittenList(dataKittenFiltered);
 }
 
-//Mostrar el litado de gatitos en ell HTML
+//Mostrar el listado de gatitos en el HTML
 renderKittenList(kittenDataList);
 
 //Eventos
