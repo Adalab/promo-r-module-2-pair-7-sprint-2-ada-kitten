@@ -133,7 +133,7 @@ function filterKitten(event) {
     .filter((kitten) => kitten.desc.toLowerCase().includes(descrSearchText.toLowerCase()))
     //Filtrar por raza
     .filter((kitten) => kitten.breed.toLowerCase().includes(breedSearchText.toLowerCase()));
-
+  //Pinta el/los gatos que tengan la descripción/raza
   renderKittenList(dataKittenFiltered);
 }
 
