@@ -17,27 +17,44 @@ const input_search_breed = document.querySelector(".js_in_search_breed");
 const addButton = document.querySelector(".js-add-button");
 
 //Objetos con cada gatito
-const kittenData_1 = {
-  image: "https://ychef.files.bbci.co.uk/976x549/p07ryyyj.jpg",
-  name: "Anastacio",
-  desc: "Ruiseño, juguetón, le guta estar tranquilo y que nadie le moleste. Es una maravilla acariciarle!",
-  breed: "British Shorthair",
-};
-const kittenData_2 = {
-  image:
-    "https://media-cldnry.s-nbcnews.com/image/upload/t_nbcnews-fp-1200-630,f_auto,q_auto:best/newscms/2019_39/3021711/190923-cat-pet-stock-cs-1052a.jpg",
-  name: "Fiona",
-  desc: "Cariñoso, le guta estar tranquilo y que nadie le moleste. Es una maravilla acariciarle!",
-  breed: "British Shorthair",
-};
-const kittenData_3 = {
-  image: "https://images.emedicinehealth.com/images/article/main_image/cat-scratch-disease.jpg",
-  name: "Cielo",
-  desc: "Dormilon, juguetón, le guta estar tranquilo y que nadie le moleste. Es una maravilla acariciarle!",
-  breed: "Persa",
-};
+// const kittenData_1 = {
+//   image: "https://ychef.files.bbci.co.uk/976x549/p07ryyyj.jpg",
+//   name: "Anastacio",
+//   desc: "Ruiseño, juguetón, le guta estar tranquilo y que nadie le moleste. Es una maravilla acariciarle!",
+//   breed: "British Shorthair",
+// };
+// const kittenData_2 = {
+//   image:
+//     "https://media-cldnry.s-nbcnews.com/image/upload/t_nbcnews-fp-1200-630,f_auto,q_auto:best/newscms/2019_39/3021711/190923-cat-pet-stock-cs-1052a.jpg",
+//   name: "Fiona",
+//   desc: "Cariñoso, le guta estar tranquilo y que nadie le moleste. Es una maravilla acariciarle!",
+//   breed: "British Shorthair",
+// };
+// const kittenData_3 = {
+//   image: "https://images.emedicinehealth.com/images/article/main_image/cat-scratch-disease.jpg",
+//   name: "Cielo",
+//   desc: "Dormilon, juguetón, le guta estar tranquilo y que nadie le moleste. Es una maravilla acariciarle!",
+//   breed: "Persa",
+// };
+const GITHUB_USER = "marcelabpetroli";
+const SERVER_URL = `https://dev.adalab.es/api/kittens/${GITHUB_USER}`;
 
-const kittenDataList = [kittenData_1, kittenData_2, kittenData_3];
+const kittenDataList = [];
+
+function addNewKittenServer(newKittenDataObject) {
+  fetch(SERVER_URL, {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        kittenDataList.push(newKittenDataObject);
+      }
+    });
+  //Vuelva a pintar el listado de gatos
+  renderKittenList(kittenDataList);
+}
 
 //Funciones
 function renderKitten(kittenData) {
