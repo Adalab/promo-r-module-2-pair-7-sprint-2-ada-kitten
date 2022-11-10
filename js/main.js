@@ -8,31 +8,32 @@ const buttonAdd = document.querySelector(".js-btn-add");
 const buttonCancelForm = document.querySelector(".js-btn-cancel");
 const inputDesc = document.querySelector(".js-input-desc");
 const inputPhoto = document.querySelector(".js-input-photo");
+const inputBreed = document.querySelector(".js-input-breed");
 const inputName = document.querySelector(".js-input-name");
-const inputRace = document.querySelector(".js-input-race");
 const linkNewFormElememt = document.querySelector(".js-button-new-form");
 const labelMesageError = document.querySelector(".js-label-error");
 const input_search_desc = document.querySelector(".js_in_search_desc");
+const addButton = document.querySelector(".js-add-button");
 
 //Objetos con cada gatito
 const kittenData_1 = {
   image: "https://ychef.files.bbci.co.uk/976x549/p07ryyyj.jpg",
   name: "Anastacio",
   desc: "Ruiseño, juguetón, le guta estar tranquilo y que nadie le moleste. Es una maravilla acariciarle!",
-  race: "British Shorthair",
+  breed: "British Shorthair",
 };
 const kittenData_2 = {
   image:
     "https://media-cldnry.s-nbcnews.com/image/upload/t_nbcnews-fp-1200-630,f_auto,q_auto:best/newscms/2019_39/3021711/190923-cat-pet-stock-cs-1052a.jpg",
   name: "Fiona",
   desc: "Juguetón, le guta estar tranquilo y que nadie le moleste. Es una maravilla acariciarle!",
-  race: "British Shorthair",
+  breed: "British Shorthair",
 };
 const kittenData_3 = {
   image: "https://images.emedicinehealth.com/images/article/main_image/cat-scratch-disease.jpg",
   name: "Cielo",
   desc: "Ruiseño, juguetón, le guta estar tranquilo y que nadie le moleste. Es una maravilla acariciarle!",
-  race: "British Shorthair",
+  breed: "British Shorthair",
 };
 
 const kittenDataList = [kittenData_1, kittenData_2, kittenData_3];
@@ -47,7 +48,7 @@ function renderKitten(kittenData) {
         alt="gatito"
       />
       <h3 class="card_title">${kittenData.name}</h3>
-      <h3 class="card_race">${kittenData.race}</h3>
+      <h3 class="card_race">${kittenData.breed}</h3>
       <p class="card_description">
       ${kittenData.desc}
       </p>
@@ -85,14 +86,30 @@ function addNewKitten(event) {
   const valueDesc = inputDesc.value;
   const valuePhoto = inputPhoto.value;
   const valueName = inputName.value;
-  if (valueDesc === "" || valuePhoto === "" || valueName === "") {
+  const valueBreed = inputBreed.value;
+  if (valueDesc === "" || valuePhoto === "" || valueName === "" || valueBreed === "") {
     labelMesageError.innerHTML = "Debe rellenar todos los valores";
   } else {
-    if (valueDesc !== "" && valuePhoto !== "" && valueName !== "") {
-      labelMesageError.innerHTML = "";
-    }
+    const newKittenDataObject = {
+      image: valuePhoto,
+      name: valueName,
+      desc: valueDesc,
+      breed: valueBreed,
+    };
+
+    kittenDataList.push(newKittenDataObject);
+
+    inputDesc.value = "";
+    inputPhoto.value = "";
+    inputName.value = "";
+    inputBreed.value = "";
+
+    labelMesageError.innerHTML = "Mola! Un nuevo gatito en Adalab!";
+
+    renderKittenList(kittenDataList);
   }
 }
+
 //Cancelar la búsqueda de un gatito
 function cancelNewKitten(event) {
   event.preventDefault();
@@ -100,22 +117,23 @@ function cancelNewKitten(event) {
   inputDesc.value = "";
   inputPhoto.value = "";
   inputName.value = "";
-  inputRace.value = "";
+  inputBreed.value = "";
 }
 
 //Filtrar por descripción
 function filterKitten(event) {
   event.preventDefault();
   const descrSearchText = input_search_desc.value;
+
   listElement.innerHTML = "";
-  const dataKittenFiltered = kittenDataList
-    .filter((kitten) => kitten.desc.includes(descrSearchText))
-    //Filtrar por raza además
-    .filter((kitten) => kitten.race === raceSearchText);
-  renderKittenList(dataKittenFiltered);
+  for (const kittenItem of kittenDataList) {
+    if (kittenItem.desc.includes(descrSearchText)) {
+      listElement.innerHTML += renderKitten(kittenItem);
+    }
+  }
 }
 
-//Mostrar el listado de gatitos en el HTML
+//Mostrar el litado de gatitos en ell HTML
 renderKittenList(kittenDataList);
 
 //Eventos
